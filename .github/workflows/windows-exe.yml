@@ -16,10 +16,22 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
       - name: Build the single-file executable
         run: cargo build --release --locked
-      - name: Upload the standalone executable
+      - name: Package executable and source bundles
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Path dist | Out-Null
+          Copy-Item target/release/ChessTrainer.exe dist/ChessTrainer.exe
+          git archive --format=zip --output=dist/ChessTrainer-Source.zip HEAD
+          Compress-Archive -Path index.html,app.js,style.css,engine-client.js,server.mjs,package.json,vendor,THIRD-PARTY-NOTICES.md,LICENSE -DestinationPath dist/ChessTrainer-Web.zip
+          $lines = Get-ChildItem dist -File | Sort-Object Name | ForEach-Object {
+            $hash = (Get-FileHash -Algorithm SHA256 -LiteralPath $_.FullName).Hash.ToLowerInvariant()
+            "$hash  $($_.Name)"
+          }
+          $lines | Set-Content -Encoding ascii dist/SHA256SUMS.txt
+      - name: Upload executable, sources, and checksums
         uses: actions/upload-artifact@v4
         with:
           name: ChessTrainer-Windows
-          path: target/release/ChessTrainer.exe
+          path: dist/*
           if-no-files-found: error
           retention-days: 90
