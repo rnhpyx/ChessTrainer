@@ -20,4 +20,6 @@ The review search is intentionally modest and is not a substitute for a full-str
 
 ## License
 
-MIT. Keep the copyright and license notice with copies or substantial portions of the code. See [LICENSE](LICENSE).
+This project is licensed under the MIT License. You may use, change, and redistribute the code, provided copies or substantial portions include the copyright and license notice in [LICENSE](LICENSE).
+
+The license does not transfer copyright ownership and does not require a visible credit line in an app that uses the code. It does require keeping the notice with redistributed copies of the code. Copyright: **rnhpyx**.
