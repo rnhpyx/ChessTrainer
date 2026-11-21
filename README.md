@@ -4,9 +4,23 @@
 
 ChessTrainer is a local-first training app for players who want to study seriously. Its six-track curriculum moves from rules into tactics, calculation, positional play, endgames, openings, and tournament habits. Games can be played against Stockfish or imported as PGNs for engine review.
 
-## Run locally
+## Run the standalone Windows app
 
-Install Node.js, then run:
+Each update to `main` builds the standalone Windows app automatically. Download the `ChessTrainer-Windows` artifact from the latest [GitHub Actions build](https://github.com/rnhpyx/ChessTrainer/actions/workflows/windows-exe.yml). The Rust executable contains the interface, chess rules library, and Stockfish engine. It opens ChessTrainer in your default browser and serves it from your computer only. Keep the console window open while using the app; close it to stop the local server. No Node.js or separate asset folder is needed.
+
+Every update pushed to `main` triggers a Windows build and replaces the executable attached to the `latest-build` prerelease.
+
+## Build from source
+
+With Rust installed, run:
+
+```sh
+cargo build --release --locked
+```
+
+The standalone executable is `target/release/ChessTrainer.exe` on Windows.
+
+For web development, install Node.js and run:
 
 ```sh
 npm start

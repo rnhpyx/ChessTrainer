@@ -1,0 +1,16 @@
+[package]
+name = "chesstrainer"
+version = "1.0.0"
+edition = "2021"
+description = "A standalone local chess training application"
+license = "MIT"
+
+[[bin]]
+name = "ChessTrainer"
+path = "src/main.rs"
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
