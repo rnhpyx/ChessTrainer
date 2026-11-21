@@ -3,7 +3,6 @@ name = "chesstrainer"
 version = "1.0.0"
 edition = "2021"
 description = "A standalone local chess training application"
-license = "MIT"
 
 [[bin]]
 name = "ChessTrainer"

@@ -45,8 +45,8 @@ Strength presets are approximate Stockfish settings, not a rating of you. The be
 
 The default review analyzes every move for the selected side and may take time on longer games. Deeper searches take longer. Evaluation gaps and suggested continuations are engine estimates, not proofs of a forced win. Tablebases or exhaustive proof are needed for some exact endgame claims.
 
-## Copyright and licenses
+## Authorship, ownership, and licenses
 
-The original ChessTrainer application code is covered by the MIT License in [`LICENSE`](LICENSE), with copyright held by **rnhpyx**. The author’s profile is [T. K. Martin Tsui on LinkedIn](https://www.linkedin.com/in/t-k-martin-tsui/). MIT allows reuse and modification while requiring preservation of the copyright and license notice with redistributed copies or substantial portions. It does not require an in-app credit line.
+ChessTrainer’s project-specific work includes its curriculum and puzzles, interface, game-review logic, Stockfish UCI adapter, local web server, and Rust executable wrapper. This work is maintained as the ChessTrainer project by **rnhpyx**; the author is [T. K. Martin Tsui](https://www.linkedin.com/in/t-k-martin-tsui/). The project-specific code is under the MIT License in [`LICENSE`](LICENSE), which requires keeping its copyright and license notice with redistributed copies or substantial portions.
 
-Third-party components retain their own licenses. The included Stockfish.js engine is GPL-3.0 and chess.js is BSD-2-Clause; see [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md) and the license files under `vendor/`.
+ChessTrainer also bundles software written by other people. We do not claim authorship or ownership of those components, and the MIT license does not replace their licenses: Stockfish.js / Stockfish is GPL-3.0, and chess.js is BSD-2-Clause. The web edition can request DM Sans and DM Mono from Google Fonts while online; those font files are not bundled in this repository. See [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md) for component versions, upstream sources, and license-file locations.
