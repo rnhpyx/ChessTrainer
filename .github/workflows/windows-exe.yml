@@ -16,6 +16,44 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
       - name: Build the single-file executable
         run: cargo build --release --locked
+      - name: Smoke test the executable and embedded assets
+        shell: pwsh
+        run: |
+          $env:CHESSTRAINER_NO_BROWSER = '1'
+          $stdout = Join-Path $env:RUNNER_TEMP 'chesstrainer-out.txt'
+          $stderr = Join-Path $env:RUNNER_TEMP 'chesstrainer-err.txt'
+          $app = Start-Process -FilePath 'target/release/ChessTrainer.exe' -WorkingDirectory $PWD -PassThru -WindowStyle Hidden -RedirectStandardOutput $stdout -RedirectStandardError $stderr
+          try {
+            $base = $null
+            for ($i = 0; $i -lt 40; $i++) {
+              Start-Sleep -Milliseconds 250
+              if (Test-Path $stdout) {
+                $output = Get-Content -Raw $stdout
+                if ($output -match 'http://127\.0\.0\.1:\d+/') { $base = $Matches[0]; break }
+              }
+              if ($app.HasExited) { throw "ChessTrainer exited early. $((Get-Content -Raw $stderr -ErrorAction SilentlyContinue))" }
+            }
+            if (-not $base) { throw 'ChessTrainer did not announce its local URL.' }
+            $checks = @(
+              @{ Path = '/'; Type = 'text/html'; Contains = 'ChessTrainer - Engine Training' },
+              @{ Path = '/app.js'; Type = 'text/javascript'; Contains = 'runAnalysis' },
+              @{ Path = '/vendor/chess.js'; Type = 'text/javascript'; Contains = 'var Chess =' },
+              @{ Path = '/vendor/stockfish/stockfish-19-lite-single.js'; Type = 'text/javascript'; Contains = 'onmessage' },
+              @{ Path = '/vendor/stockfish/stockfish-19-lite-single.wasm'; Type = 'application/wasm'; Contains = $null },
+              @{ Path = '/THIRD-PARTY-NOTICES.md'; Type = 'text/markdown'; Contains = 'Stockfish.js' }
+            )
+            foreach ($check in $checks) {
+              $response = Invoke-WebRequest -Uri ($base + $check.Path) -TimeoutSec 5
+              if ($response.StatusCode -ne 200) { throw "HTTP $($response.StatusCode) for $($check.Path)" }
+              if ($response.Headers['Content-Type'] -notlike "$($check.Type)*") { throw "Unexpected content type for $($check.Path): $($response.Headers['Content-Type'])" }
+              if ($null -ne $check.Contains -and $response.Content -notlike "*$($check.Contains)*") { throw "Expected content missing from $($check.Path)" }
+              if ($check.Path.EndsWith('.wasm') -and $response.RawContentLength -lt 1000000) { throw 'Stockfish WASM response is unexpectedly small.' }
+              Write-Host "PASS $($check.Path) ($($response.RawContentLength) bytes)"
+            }
+          }
+          finally {
+            if (-not $app.HasExited) { $app.Kill(); $app.WaitForExit() }
+          }
       - name: Package executable and source bundles
         shell: pwsh
         run: |

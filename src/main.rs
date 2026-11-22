@@ -68,17 +68,24 @@ fn main() -> std::io::Result<()> {
     let url = format!("http://{address}/");
     println!("ChessTrainer is running at {url}");
     println!("Keep this window open while you train. Close it to stop the app.");
+    std::io::stdout().flush()?;
 
     #[cfg(target_os = "windows")]
-    let _browser = Command::new("cmd")
-        .args(["/C", "start", "", &url])
-        .spawn();
+    if std::env::var_os("CHESSTRAINER_NO_BROWSER").is_none() {
+        let _browser = Command::new("cmd")
+            .args(["/C", "start", "", &url])
+            .spawn();
+    }
 
     #[cfg(target_os = "macos")]
-    let _browser = Command::new("open").arg(&url).spawn();
+    if std::env::var_os("CHESSTRAINER_NO_BROWSER").is_none() {
+        let _browser = Command::new("open").arg(&url).spawn();
+    }
 
     #[cfg(all(unix, not(target_os = "macos")))]
-    let _browser = Command::new("xdg-open").arg(&url).spawn();
+    if std::env::var_os("CHESSTRAINER_NO_BROWSER").is_none() {
+        let _browser = Command::new("xdg-open").arg(&url).spawn();
+    }
 
     for incoming in listener.incoming() {
         match incoming {
