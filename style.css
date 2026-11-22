@@ -11,3 +11,18 @@
 .piece{font-size:clamp(20px,9cqw,54px)}
 @media(max-width:760px){.board-wrap{width:min(100%,480px,calc(100dvh - 260px))}}
 @media(min-width:761px) and (max-width:850px){.puzzle-layout,.game-layout{grid-template-columns:minmax(0,1fr)}.board-wrap{max-width:min(520px,calc(100dvh - 300px))}}
+
+/* Terminal and check states need to read immediately during play. */
+.board{height:100cqw}
+.square.in-check{background:#db403a!important;box-shadow:inset 0 0 0 4px #8f201b,inset 0 0 28px #fb696488;z-index:2}
+.square.in-check .piece{filter:drop-shadow(0 1px 2px #4c0808);transform:scale(1.08)}
+.game-status{display:inline-flex;align-items:center;justify-content:center;min-height:28px;padding:5px 9px;border-radius:5px;font:700 9px 'DM Mono',monospace;letter-spacing:.65px;color:#4f6659;background:#eaf0eb}
+.game-status.in-check{color:#8d341f;background:#fff0e6;border:1px solid #e7b99e}
+.game-status.terminal{color:#872c25;background:#ffebe8;border:1px solid #e6a49c;font-weight:800}
+.coach-card.terminal{background:#fff0ee;border:1px solid #e7b5ae;border-left:5px solid #ba4036}
+.coach-card.in-check{background:#fff4eb;border:1px solid #ecc5a9;border-left:5px solid #d66a36}
+.coach-card.terminal .coach-avatar{background:#f6d7d2;color:#9d332a}
+.coach-card.in-check .coach-avatar{background:#f8dfcb;color:#aa4d24}
+.coach-card.terminal b{font-weight:700;color:#872c25}
+.coach-card.in-check b{font-weight:700;color:#8d341f}
+.plan-sequence-intro{display:flex;gap:10px;align-items:baseline;margin:-3px 0 12px;padding:10px 13px;background:#edf2ed;border-left:3px solid #77927e;border-radius:0 6px 6px 0;color:#68776d;font-size:11px;line-height:1.5}.plan-sequence-intro b{flex:none;color:#315e50;font-size:11px}.step-number{width:22px;height:22px;flex:none;border-radius:50%;display:grid;place-items:center;background:#edf1eb;color:#4d7059;font:10px 'DM Mono';font-weight:700}.task-card.complete .step-number{background:#e3eee5;color:#3e7950}.task-check{font:8px 'DM Mono',monospace;letter-spacing:.45px;color:#839187}.task-card.complete .task-check{color:#4c8258}.task-card .task-top{min-height:25px}
