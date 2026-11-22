@@ -67,3 +67,12 @@
 .lesson-actions button:disabled{opacity:.48;cursor:not-allowed}
 .lesson-detail .lesson-actions #finishLesson{margin-right:auto}
 @media(max-width:700px){.lesson-demo-layout{grid-template-columns:1fr}.lesson-demo-board-wrap{width:min(100%,300px);margin:auto}.lesson-detail-head h2{font-size:25px}.lesson-example{margin-left:0}.lesson-actions #finishLesson{margin-right:0}}
+.puzzle-completion{min-height:calc(100vh - 150px);display:grid;place-items:center;padding:28px 0}
+.puzzle-completion-card{width:min(100%,560px);padding:38px;background:#fff;border:1px solid var(--line);border-radius:10px;text-align:center;box-shadow:0 8px 30px #263e300d}
+.puzzle-completion-mark{width:54px;height:54px;margin:22px auto 15px;display:grid;place-items:center;border-radius:50%;background:#e6efe7;color:#397153;font-size:27px}
+.puzzle-completion-card h1{font:34px var(--serif);font-weight:400;margin:0 0 10px;color:#17382f}
+.puzzle-completion-card>p{max-width:400px;margin:0 auto;color:#78857d;font-size:13px;line-height:1.7}
+.puzzle-completion-score{display:flex;flex-direction:column;gap:3px;margin:24px 0;color:#7b8880;font-size:11px}
+.puzzle-completion-score b{font:30px var(--serif);color:#416850;font-weight:400}
+.puzzle-completion-card button{margin:0 auto}
+@media(max-width:600px){.puzzle-completion-card{padding:27px 20px}.puzzle-completion-card h1{font-size:28px}}
