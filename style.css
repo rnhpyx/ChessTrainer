@@ -10,3 +10,4 @@
 .board{aspect-ratio:1/1;grid-template-columns:repeat(8,minmax(0,1fr));grid-template-rows:repeat(8,minmax(0,1fr));}
 .piece{font-size:clamp(20px,9cqw,54px)}
 @media(max-width:760px){.board-wrap{width:min(100%,480px,calc(100dvh - 260px))}}
+@media(min-width:761px) and (max-width:850px){.puzzle-layout,.game-layout{grid-template-columns:minmax(0,1fr)}.board-wrap{max-width:min(520px,calc(100dvh - 300px))}}
