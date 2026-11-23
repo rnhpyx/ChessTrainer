@@ -34,14 +34,14 @@ Open [http://127.0.0.1:4173](http://127.0.0.1:4173). The browser worker and WebA
 
 - 33 study modules across foundations, tactical patterns, calculation, positional play, endgames, openings, and competition
 - Tactical positions that ask you to calculate a concrete move
-- Stockfish 19 practice with selectable strength presets from Skill Level 0 through an approximate 3190 engine setting
+- Stockfish 19 practice with a 100–4,000 target slider in 100-point steps; low targets use a practice handicap, and targets above the engine ceiling are capped
 - Post-game review of best moves, the opponent’s strongest reply, the line actually played, and evaluation swings
 - PGN import for games from tournaments or other chess sites
 - Review depth options of 12, 16, or 20 plies
 - Optional 5+0, 10+0, 15+10, and 30+0 training clocks with correct timeout handling
 - Browser-local progress and game history
 
-Strength presets are approximate Stockfish settings, not a rating of you. The beginner setting is Stockfish Skill Level 0, not a 400 Elo opponent. Strong settings can be too difficult for a new player; use puzzles and review to study positions, and raise the opponent level gradually. Stockfish search can expose tactical and strategic errors, but no engine review or curriculum can promise 2800 Elo. Tournament experience, human coaching, and a sustained study plan remain important.
+The strength slider is a training aid, not an official human Elo scale. From 100 through 1,300, ChessTrainer uses Stockfish Skill Level 0 plus randomized legal moves as a practice handicap; those targets are not calibrated ratings. From 1,320 through 3,190, the bundled Stockfish uses its UCI_Elo strength limit, which is an approximate engine rating. Targets from 3,200 through 4,000 all use the engine ceiling of about 3,190. After completing a lesson, the lesson page points to the next step: solve the tactics set, then play and review a game. Stockfish search can expose tactical and strategic errors, but no engine review or curriculum can promise 2800 Elo. Tournament experience, human coaching, and a sustained study plan remain important.
 
 The default review analyzes every move for the selected side and may take time on longer games. Deeper searches take longer. Evaluation gaps and suggested continuations are engine estimates, not proofs of a forced win. Tablebases or exhaustive proof are needed for some exact endgame claims.
 

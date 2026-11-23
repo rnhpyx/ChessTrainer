@@ -76,3 +76,16 @@
 .puzzle-completion-score b{font:30px var(--serif);color:#416850;font-weight:400}
 .puzzle-completion-card button{margin:0 auto}
 @media(max-width:600px){.puzzle-completion-card{padding:27px 20px}.puzzle-completion-card h1{font-size:28px}}
+.strength-panel{margin:18px 0 22px;padding:15px 17px;background:#fff;border:1px solid var(--line);border-radius:8px}
+.strength-panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.strength-panel-head label{font:9px 'DM Mono';letter-spacing:1px;color:#829087}
+.strength-panel-head b{font-size:12px;color:var(--green);text-align:right}
+.strength-panel input[type=range]{display:block;width:100%;margin:16px 0 7px;accent-color:var(--green);cursor:pointer}
+.strength-scale{display:flex;justify-content:space-between;font:9px 'DM Mono';color:#89968f}
+.strength-panel>p{margin:10px 0 0;color:#7d8983;font-size:10px;line-height:1.55}
+.board-label #engineCurrentLabel{font:9px 'DM Mono';font-weight:400;color:#61756a;letter-spacing:.25px}
+.lesson-next-step{margin-top:16px;padding:18px 20px;background:#edf2ed;border:1px solid #dce7dc;border-radius:8px}
+.lesson-next-step h3{margin:8px 0 5px;font:20px var(--serif);font-weight:400;color:#193a30}
+.lesson-next-step p{margin:0;color:#718078;font-size:11px;line-height:1.6}
+.lesson-next-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+@media(max-width:600px){.strength-panel-head{align-items:flex-start;flex-direction:column}.strength-panel-head b{text-align:left}.lesson-next-actions button{width:100%}}
