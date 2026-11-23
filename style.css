@@ -89,3 +89,5 @@
 .lesson-next-step p{margin:0;color:#718078;font-size:11px;line-height:1.6}
 .lesson-next-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
 @media(max-width:600px){.strength-panel-head{align-items:flex-start;flex-direction:column}.strength-panel-head b{text-align:left}.lesson-next-actions button{width:100%}}
+
+#lessonList.lesson-list-lesson-open{display:none}
